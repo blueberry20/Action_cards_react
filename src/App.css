@@ -1,0 +1,64 @@
+header {
+    background-color: aquamarine;
+    height: 100px;
+    padding: 20px;
+    color: #000;
+}
+
+section {
+    height: 100%;
+    text-align: center;
+    padding: 50px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+.col-25 {
+    width: 25%;
+}
+.col-50 {
+    width: 50%;
+}
+
+h1 {
+    font-family: "Dosis";
+    font-size: 50px;
+}
+
+h2 {
+    font-family: "Roboto";
+    font-size: 40px;
+}
+
+/*==================Intro section======================*/
+#boxImg {
+    width: 400px;
+    margin: 0 auto;
+}
+
+/*======================Slideshow======================*/
+
+.slide img {
+    height: 500px;
+    margin: 0 auto;
+}
+
+.directionIcon {
+    position: absolute;
+    top: 50%;
+    margin-top: -156px;
+}
+
+.iconRight {
+    right: 20px;
+}
+
+.iconLeft {
+    left: 20px;
+}
