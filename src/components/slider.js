@@ -65,7 +65,7 @@ const images = imageData.map(function(item, index) {
 });
 
 function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const { onClick } = props;
     return (
         <div className="directionIcon iconRight" onClick={onClick}>
             <img src={arrowRight} alt="arrow right" />
@@ -74,7 +74,7 @@ function SampleNextArrow(props) {
 }
 
 function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
+    const { onClick } = props;
     return (
         <div className="directionIcon iconLeft" onClick={onClick}>
             <img src={arrowLeft} alt="arrow left" />
@@ -88,8 +88,8 @@ class SimpleSlider extends React.Component {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 2,
+            slidesToShow: 3,
+            slidesToScroll: 3,
             arrows: true,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
@@ -114,9 +114,11 @@ class SimpleSlider extends React.Component {
             ]
         };
         return (
-            <div id="slideshowWrapper">
+            <section id="slideshowSection">
+                <h3>View all cards</h3>
+                <h4>You can check out all 25 cards here</h4>
                 <Slider {...settings}>{images}</Slider>
-            </div>
+            </section>
         );
     }
 }

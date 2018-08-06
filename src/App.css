@@ -13,6 +13,7 @@ section {
 
 .flex {
     display: flex;
+    align-items: center;
 }
 
 .flexColumn {
@@ -27,13 +28,40 @@ section {
 }
 
 h1 {
-    font-family: "Dosis";
-    font-size: 50px;
+    font-family: "Over the Rainbow";
+    font-size: 30px;
+    margin: 0 1em;
 }
 
 h2 {
     font-family: "Roboto";
+    font-size: 50px;
+    font-weight: 300;
+}
+
+h3 {
+    font-family: "Roboto";
+    font-weight: 300;
     font-size: 40px;
+    margin-bottom: 0;
+}
+
+h4 {
+    font-family: "Open Sans";
+    font-weight: 300;
+}
+
+p {
+    font-family: "Open Sans";
+}
+
+p.standOutText {
+    font-weight: 500 !important;
+    font-family: "Lato";
+    width: 70%;
+    margin: 0 auto;
+    font-size: 24px !important;
+    line-height: 1.5em;
 }
 
 /*==================Intro section======================*/
@@ -42,17 +70,33 @@ h2 {
     margin: 0 auto;
 }
 
+#mainSection {
+    background-color: #84fdfd;
+}
+
 /*======================Slideshow======================*/
+#slideshowSection {
+    background-color: #fff;
+    padding: 50px 0 100px;
+}
+
+#slideshowSection h4 {
+    margin-bottom: 40px;
+}
 
 .slide img {
-    height: 500px;
+    height: 400px;
     margin: 0 auto;
 }
 
 .directionIcon {
     position: absolute;
     top: 50%;
-    margin-top: -156px;
+    margin-top: -102px;
+}
+
+.directionIcon img {
+    height: 200px;
 }
 
 .iconRight {
@@ -61,4 +105,37 @@ h2 {
 
 .iconLeft {
     left: 20px;
+}
+
+/*======================Instructions======================*/
+
+#instructionsSection {
+    min-height: 500px;
+    background-color: #fffdb8;
+}
+
+#instructionsSection img {
+    width: 500px;
+    margin-bottom: 2em;
+}
+
+#instructionsSection h4 {
+    font-size: 30px;
+}
+
+#instructionsSection p {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/*======================Memory game======================*/
+
+.memoryCard {
+    width: 200px;
+    padding: 20px;
+}
+
+#memoryGameWrapper {
+    width: 960px;
+    margin: 0 auto;
 }

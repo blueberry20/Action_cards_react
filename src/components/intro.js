@@ -3,11 +3,9 @@ import boxImg from "../img/cover.jpg";
 
 const Intro = () => {
     return (
-        <section className="intro">
-            <header>
-                <h1>Animal Action Cards</h1>
-            </header>
-            <div id="mainSection">
+        <div className="intro">
+            <h1>Animal Action Cards</h1>
+            <section id="mainSection">
                 <div className="flex">
                     <div className="flexColumn col-25">
                         <h2>Fun</h2>
@@ -17,10 +15,15 @@ const Intro = () => {
                     <div className="flexColumn col-50">
                         <img id="boxImg" src={boxImg} alt="package cover" />
                     </div>
-                    <div className="flexColumn col-25" />
+                    <div className="flexColumn col-25">
+                        <h2>A game</h2>
+                        <h2>that gets</h2>
+                        <h2>your kids</h2>
+                        <h2>moving</h2>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 };
 
