@@ -25,6 +25,7 @@ import polar_bear from "../img/polar_bear.jpg";
 import rooster from "../img/rooster.jpg";
 import snake from "../img/snake.jpg";
 import turtle from "../img/turtle.jpg";
+import back_card from "../img/back_card.jpg";
 
 let imageNamesArray = [
     ant,
@@ -56,7 +57,7 @@ let imageNamesArray = [
 
 //get 7 random images
 let randomCards = [];
-while (randomCards.length < 8) {
+while (randomCards.length < 6) {
     let randomCard =
         imageNamesArray[Math.floor(Math.random() * imageNamesArray.length)];
     if (randomCards.indexOf(randomCard) == -1) {
@@ -68,26 +69,88 @@ while (randomCards.length < 8) {
 let randomCardsDuplicate = randomCards.slice();
 let doubleRandomCardsArray = randomCards.concat(randomCardsDuplicate);
 let shuffledCards = shuffle(doubleRandomCardsArray);
-
-let cards = shuffledCards.map(function(item, index) {
-    return <img className="memoryCard" key={index} src={item} alt={item} />;
-});
+console.log(shuffledCards);
 
 class MemoryGame extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            indexClicked: "",
+            cardsClicked: 0
+        };
+    }
+
+    renderCards() {
+        // let cards = shuffledCards.map(function(item, index) {
+        //     return (
+        //         <img className="memoryCard" key={index} src={item} alt={item} />
+        //     );
+        // });
+
+        //iterate through images and show back_cards for each.
+        //when image is clicked, the index of clicked image is saved to state indexClicked
+        //the second ternary operator checks if indexClicked is the same as the current image
+        //in which case the image is shown
+        let backCards = shuffledCards.map((image, index) => {
+            return (
+                <img
+                    onClick={() => this.memoryCardClick(index)}
+                    className="memoryCard"
+                    key={index}
+                    src={
+                        this.state.indexClicked === ""
+                            ? back_card
+                            : this.state.indexClicked === index &&
+                              this.state.cardsClicked < 2
+                                ? image
+                                : back_card
+                    }
+                    alt="back side of a card"
+                />
+            );
+        });
+
+        return backCards;
+    }
+
+    memoryCardClick(index) {
+        let counter = this.state.cardsClicked;
+        if (counter < 2) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+        this.setState({ indexClicked: index });
+        this.setState({ cardsClicked: counter });
     }
 
     render() {
         return (
             <section id="memoryGameSection">
-                <h3>Play a memory game with these cards</h3>
-                <div id="memoryGameWrapper">{cards}</div>
+                <h3>Play a memory game</h3>
+                <h4>
+                    If you guess 2 cards that are the same, you get to do the
+                    action on the card
+                </h4>
+                <div id="memoryGameWrapper">{this.renderCards()}</div>
             </section>
         );
     }
 }
 
+// if (this.state.indexClicked === ""){
+//     return back_card
+// }
+// else {
+//     if (this.state.indexClicked === index){
+//         return image
+//     }
+//     else {
+//         return back_card
+//     }
+// }
+
+//helper functions
 function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue,
@@ -104,7 +167,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
