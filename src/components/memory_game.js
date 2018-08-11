@@ -60,7 +60,7 @@ let randomCards = [];
 while (randomCards.length < 6) {
     let randomCard =
         imageNamesArray[Math.floor(Math.random() * imageNamesArray.length)];
-    if (randomCards.indexOf(randomCard) == -1) {
+    if (randomCards.indexOf(randomCard) === -1) {
         randomCards.push(randomCard);
     }
 }
@@ -157,7 +157,7 @@ function shuffle(array) {
         randomIndex;
 
     // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+    while (0 !=== currentIndex) {
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
