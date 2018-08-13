@@ -75,8 +75,11 @@ class MemoryGame extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            indexClicked: "",
-            cardsClicked: 0
+            //indexClicked: "",
+            indexesOfCardsToShow: [],
+            cardsClicked: 0,
+            firstCard: null,
+            secondCard: null
         };
     }
 
@@ -89,7 +92,7 @@ class MemoryGame extends Component {
 
         //iterate through images and show back_cards for each.
         //when image is clicked, the index of clicked image is saved to state indexClicked
-        //the second ternary operator checks if indexClicked is the same as the current image
+        //the nested ternary operator checks if indexClicked is the same as the current image
         //in which case the image is shown
         let backCards = shuffledCards.map((image, index) => {
             return (
@@ -98,10 +101,10 @@ class MemoryGame extends Component {
                     className="memoryCard"
                     key={index}
                     src={
-                        this.state.indexClicked === ""
+                        this.state.indexesOfCardsToShow.length === 0
                             ? back_card
-                            : this.state.indexClicked === index &&
-                              this.state.cardsClicked < 2
+                            : this.state.indexesOfCardsToShow.indexOf(index) !==
+                              -1
                                 ? image
                                 : back_card
                     }
@@ -118,9 +121,46 @@ class MemoryGame extends Component {
         if (counter < 2) {
             counter++;
         } else {
-            counter = 0;
+            counter = 1;
         }
-        this.setState({ indexClicked: index });
+        //if a card is clicked first time, save firstCard to state
+        //and add first Card index to indexesOfCardsToShow state
+        if (counter == 1) {
+            this.setState({ firstCard: shuffledCards[index] });
+            let indexesOfCardsToShowCopy = this.state.indexesOfCardsToShow;
+            indexesOfCardsToShowCopy.push(index);
+            this.setState({ indexesOfCardsToShow: indexesOfCardsToShowCopy });
+        }
+        //if the second card is clicked, check if both images are the same
+        else if (counter == 2) {
+            let secondCard = shuffledCards[index]; //card at current index
+            //if cards are the same
+            if (this.state.firstCard == secondCard) {
+                let indexesOfCardsToShowCopy = this.state.indexesOfCardsToShow.push(
+                    index
+                );
+                this.setState({
+                    indexesOfCardsToShow: indexesOfCardsToShowCopy
+                });
+                console.log("the same");
+            }
+            //if cards are different, first add secondCard to indexesOfCardsToShow
+            //and in 2 seconds remove both from indexesOfCardsToShow state
+            else {
+                let indexesOfCardsToShowCopy = this.state.indexesOfCardsToShow;
+                indexesOfCardsToShowCopy.push(index);
+                let self = this;
+                setTimeout(function() {
+                    let indexesOfCardsToShowCopy =
+                        self.state.indexesOfCardsToShow;
+                    indexesOfCardsToShowCopy.splice(-2);
+                    self.setState({
+                        indexesOfCardsToShow: indexesOfCardsToShowCopy
+                    });
+                }, 2000);
+            }
+        }
+
         this.setState({ cardsClicked: counter });
     }
 
