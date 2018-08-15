@@ -69,7 +69,7 @@ while (randomCards.length < 6) {
 let randomCardsDuplicate = randomCards.slice();
 let doubleRandomCardsArray = randomCards.concat(randomCardsDuplicate);
 let shuffledCards = shuffle(doubleRandomCardsArray);
-console.log(shuffledCards);
+//console.log(shuffledCards);
 
 class MemoryGame extends Component {
     constructor(props) {
@@ -78,23 +78,19 @@ class MemoryGame extends Component {
             indexesOfCardsToShow: [],
             cardsClicked: 0,
             firstCard: null,
-            clickInProcess: false
+            keepOpen: false
         };
     }
 
     renderCards() {
         //iterate through images and show back_cards for each.
-        //when image is clicked, the index of clicked image is saved to state indexClicked
+        //when image is clicked, the index of clicked image is saved to state indexesOfCardsToShow
         //the nested ternary operator checks if current index is found in indexesOfCardsToShow
         // array, in which case the image is shown
         let backCards = shuffledCards.map((image, index) => {
             return (
                 <img
-                    onClick={
-                        !this.state.clickInProcess
-                            ? () => this.memoryCardClick(index)
-                            : null
-                    }
+                    onClick={() => this.memoryCardClick(index)}
                     className="memoryCard"
                     key={index}
                     src={
@@ -114,7 +110,6 @@ class MemoryGame extends Component {
     }
 
     memoryCardClick(index) {
-        this.setState({ clickInProcess: true });
         let counter = this.state.cardsClicked;
         if (counter < 2) {
             counter++;
@@ -123,40 +118,38 @@ class MemoryGame extends Component {
         }
 
         let indexesOfCardsToShowCopy = this.state.indexesOfCardsToShow;
-        indexesOfCardsToShowCopy.push(index);
 
         //if a card is clicked first time, save firstCard to state
         //and add first Card index to indexesOfCardsToShow state
-        if (counter == 1) {
+        if (counter === 1) {
             this.setState({ firstCard: shuffledCards[index] });
-            this.setState({
-                indexesOfCardsToShow: indexesOfCardsToShowCopy
-            });
+            //if last 2 cards clicked have not been the same
+            //first remove last 2 images from indexesOfCardsToShowCopy
+            if (this.state.keepOpen === false) {
+                indexesOfCardsToShowCopy.splice(-2);
+            }
+            //and then add current image
+            indexesOfCardsToShowCopy.push(index);
         }
         //if the second card is clicked, check if both images are the same
-        else if (counter == 2) {
+        else if (counter === 2) {
             let secondCard = shuffledCards[index]; //card at current index
-            //if cards are the same, add them both to indexesOfCardsToShow state
-            if (this.state.firstCard == secondCard) {
-                this.setState({
-                    indexesOfCardsToShow: indexesOfCardsToShowCopy
-                });
+            //if cards are the same, add the second one to indexesOfCardsToShow state
+            //and set state for keepOpen to be true
+            if (this.state.firstCard === secondCard) {
+                this.setState({ keepOpen: true });
             }
-            //if cards are different, first add secondCard to indexesOfCardsToShow
-            //and in 2 seconds remove both from indexesOfCardsToShow state
+            //if cards are different, add secondCard to indexesOfCardsToShow
+            //and set state for keepOpen to false
             else {
-                let self = this;
-                setTimeout(function() {
-                    let indexesOfCardsToShowCopy =
-                        self.state.indexesOfCardsToShow;
-                    indexesOfCardsToShowCopy.splice(-2);
-                    self.setState({
-                        indexesOfCardsToShow: indexesOfCardsToShowCopy
-                    });
-                }, 1000);
+                this.setState({ keepOpen: false });
             }
+            indexesOfCardsToShowCopy.push(index);
         }
-        this.setState({ clickInProcess: false });
+
+        this.setState({
+            indexesOfCardsToShow: indexesOfCardsToShowCopy
+        });
         this.setState({ cardsClicked: counter });
     }
 
