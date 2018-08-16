@@ -27,50 +27,6 @@ import snake from "../img/snake.jpg";
 import turtle from "../img/turtle.jpg";
 import back_card from "../img/back_card.jpg";
 
-let imageNamesArray = [
-    ant,
-    bird,
-    bunny,
-    camel,
-    cat,
-    cheepmunk,
-    cheetah,
-    chicken,
-    crab,
-    crocodile,
-    elephant,
-    fish,
-    flamingo,
-    fox,
-    frog,
-    gorilla,
-    horse,
-    hyena,
-    penguin,
-    pig,
-    polar_bear,
-    rooster,
-    seal,
-    snake,
-    turtle
-];
-
-//get 7 random images
-let randomCards = [];
-while (randomCards.length < 6) {
-    let randomCard =
-        imageNamesArray[Math.floor(Math.random() * imageNamesArray.length)];
-    if (randomCards.indexOf(randomCard) === -1) {
-        randomCards.push(randomCard);
-    }
-}
-
-//copy array with 8 random images, join them and shuffle
-let randomCardsDuplicate = randomCards.slice();
-let doubleRandomCardsArray = randomCards.concat(randomCardsDuplicate);
-let shuffledCards = shuffle(doubleRandomCardsArray);
-//console.log(shuffledCards);
-
 class MemoryGame extends Component {
     constructor(props) {
         super(props);
@@ -80,6 +36,54 @@ class MemoryGame extends Component {
             firstCard: null,
             keepOpen: false
         };
+        this.imageNamesArray = [
+            ant,
+            bird,
+            bunny,
+            camel,
+            cat,
+            cheepmunk,
+            cheetah,
+            chicken,
+            crab,
+            crocodile,
+            elephant,
+            fish,
+            flamingo,
+            fox,
+            frog,
+            gorilla,
+            horse,
+            hyena,
+            penguin,
+            pig,
+            polar_bear,
+            rooster,
+            seal,
+            snake,
+            turtle
+        ];
+        this.shuffledCards = this.generateRandomCards(6);
+    }
+
+    generateRandomCards(numberOfUniqueCards) {
+        //get 6 random images
+        let randomCards = [];
+        while (randomCards.length < numberOfUniqueCards) {
+            let randomCard = this.imageNamesArray[
+                Math.floor(Math.random() * this.imageNamesArray.length)
+            ];
+            if (randomCards.indexOf(randomCard) === -1) {
+                randomCards.push(randomCard);
+            }
+        }
+
+        //copy array with 8 random images, join them and shuffle
+        let randomCardsDuplicate = randomCards.slice();
+        let doubleRandomCardsArray = randomCards.concat(randomCardsDuplicate);
+        let shuffledCards = shuffle(doubleRandomCardsArray);
+        //console.log(shuffledCards);
+        return shuffledCards;
     }
 
     renderCards() {
@@ -87,7 +91,7 @@ class MemoryGame extends Component {
         //when image is clicked, the index of clicked image is saved to state indexesOfCardsToShow
         //the nested ternary operator checks if current index is found in indexesOfCardsToShow
         // array, in which case the image is shown
-        let backCards = shuffledCards.map((image, index) => {
+        let backCards = this.shuffledCards.map((image, index) => {
             return (
                 <img
                     onClick={() => this.memoryCardClick(index)}
@@ -122,7 +126,7 @@ class MemoryGame extends Component {
         //if a card is clicked first time, save firstCard to state
         //and add first Card index to indexesOfCardsToShow state
         if (counter === 1) {
-            this.setState({ firstCard: shuffledCards[index] });
+            this.setState({ firstCard: this.shuffledCards[index] });
             //if last 2 cards clicked have not been the same
             //first remove last 2 images from indexesOfCardsToShowCopy
             if (this.state.keepOpen === false) {
@@ -133,7 +137,7 @@ class MemoryGame extends Component {
         }
         //if the second card is clicked, check if both images are the same
         else if (counter === 2) {
-            let secondCard = shuffledCards[index]; //card at current index
+            let secondCard = this.shuffledCards[index]; //card at current index
             //if cards are the same, add the second one to indexesOfCardsToShow state
             //and set state for keepOpen to be true
             if (this.state.firstCard === secondCard) {
