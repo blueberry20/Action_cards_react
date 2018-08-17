@@ -85,7 +85,7 @@ function SamplePrevArrow(props) {
 class SimpleSlider extends React.Component {
     render() {
         var settings = {
-            dots: true,
+            dots: false,
             infinite: true,
             speed: 500,
             slidesToShow: 3,
@@ -95,12 +95,11 @@ class SimpleSlider extends React.Component {
             prevArrow: <SamplePrevArrow />,
             responsive: [
                 {
-                    breakpoint: 1100,
+                    breakpoint: 991,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
-                        infinite: true,
-                        dots: true
+                        infinite: true
                     }
                 },
                 {

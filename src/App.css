@@ -55,13 +55,25 @@ p {
     font-family: "Open Sans";
 }
 
-p.standOutText {
+.standOutText {
     font-weight: 500 !important;
     font-family: "Lato";
     width: 70%;
     margin: 0 auto;
     font-size: 24px !important;
     line-height: 1.5em;
+}
+
+.gray {
+    color: #827e7e;
+}
+
+.smallFont {
+    font-size: 12px;
+}
+
+.movingFlowers {
+    position: absolute;
 }
 
 /*==================Intro section======================*/
@@ -115,7 +127,7 @@ p.standOutText {
 }
 
 #instructionsSection img {
-    width: 500px;
+    width: 400px;
     margin-bottom: 2em;
 }
 
@@ -138,4 +150,179 @@ p.standOutText {
 #memoryGameWrapper {
     width: 960px;
     margin: 0 auto;
+}
+
+.slick-list {
+    margin: 0 100px;
+}
+/*======================Contact======================*/
+.socialIcon img {
+    height: 50px;
+}
+
+#contactSection {
+    background-color: #84fdfd;
+}
+
+/*======================Flowers======================*/
+#flower5 {
+    top: 500px;
+    right: 10px;
+    height: 300px;
+}
+
+#flower4 {
+    top: 600px;
+    left: 0;
+    height: 200px;
+}
+
+.animateFlowers {
+    animation: rotate 2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotate {
+    50% {
+        transform: translate(50px, 50px) rotateZ(10deg);
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        transform: translate(100px, 100px) rotateZ(20deg);
+        animation-timing-function: ease-in-out;
+    }
+}
+
+/*======================Media queries======================*/
+
+@media all and (max-width: 1199px) {
+    h2 {
+        font-size: 46px;
+    }
+
+    .slide img {
+        height: 350px;
+    }
+
+    .memoryCard {
+        padding: 10px;
+    }
+
+    #memoryGameWrapper {
+        width: 880px;
+    }
+}
+
+@media all and (max-width: 991px) {
+    section {
+        padding: 30px;
+    }
+    #boxImg {
+        width: 350px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 34px;
+    }
+
+    #instructionsSection h4 {
+        font-size: 26px;
+    }
+
+    p.standOutText {
+        font-size: 20px !important;
+    }
+
+    .memoryCard {
+        width: 23%;
+        padding: 1%;
+    }
+    #memoryGameWrapper {
+        width: 640px;
+    }
+
+    #instructionsSection img {
+        width: 300px;
+    }
+}
+@media all and (max-width: 768px) {
+    h1 {
+        text-align: center;
+    }
+    .col-50 {
+        padding: 20px;
+    }
+    #boxImg {
+        width: 100%;
+    }
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+    #instructionsSection h4 {
+        font-size: 21px;
+    }
+    #instructionsSection p {
+        font-size: 18px;
+    }
+    p.standOutText {
+        font-size: 18px !important;
+        width: 100%;
+    }
+
+    #memoryGameWrapper {
+        width: 100%;
+    }
+}
+@media all and (max-width: 575px) {
+    h1 {
+        font-size: 28px;
+    }
+    section {
+        padding: 20px;
+    }
+    .xs-flex-column {
+        flex-direction: column;
+    }
+    .xs-col-100 {
+        width: 100%;
+    }
+    #boxImg {
+        width: 250px;
+    }
+    h2 {
+        font-size: 30px;
+        margin: 5px;
+        display: inline;
+    }
+    h3 {
+        font-size: 28px;
+        margin-top: 0;
+    }
+    .memoryCard {
+        width: 30%;
+    }
+
+    #slideshowSection {
+        background-color: #fff;
+        padding: 30px 0 60px;
+    }
+
+    .directionIcon img {
+        height: 150px;
+    }
+
+    .slick-list {
+        margin: 0 70px;
+    }
+    .slide img {
+        height: 300px;
+    }
 }
