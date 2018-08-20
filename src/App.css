@@ -72,10 +72,6 @@ p {
     font-size: 12px;
 }
 
-.movingFlowers {
-    position: absolute;
-}
-
 /*==================Intro section======================*/
 #boxImg {
     width: 400px;
@@ -165,6 +161,10 @@ p {
 }
 
 /*======================Flowers======================*/
+.movingFlowers {
+    position: absolute;
+}
+
 #flower5 {
     top: 500px;
     right: 10px;

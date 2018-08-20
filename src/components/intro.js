@@ -2,29 +2,53 @@ import React, { Component } from "react";
 import boxImg from "../img/cover.jpg";
 import flower5 from "../img/flower5.png";
 import flower4 from "../img/flower4.png";
+//import _ from "lodash";
 
 class Intro extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            scrolling: false
-            // speed: this.props.speed || 1
+            lastScrollTop: window.scrollY
         };
+
+        //this.lastScrollTop = window.scrollY;
     }
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll.bind(this));
+        window.scrollTo(0, 0);
+        // window.addEventListener(
+        //     "scroll",
+        //     _.throttle(this.handleScroll.bind(this), 100)
+        // );
     }
 
     handleScroll() {
-        const speed = 0.4;
-        const top = this.top;
+        let parallaxEl = this.refs.parallaxElement;
+        let elementTopPosition = parallaxEl.offsetTop;
+        let pageTop = window.scrollY;
 
-        //calculate new Stomp//get current scroll level, # of pixels from the absolute top
-        const pageTop = window.scrollY;
-        const newTop = top - pageTop * speed;
+        //console.log("lastScrollTop " + this.state.lastScrollTop);
+        console.log("pageTop" + pageTop);
+        console.log("elementTopPosition" + elementTopPosition);
 
-        //set new top position
-        this.refs.parallaxElement.style.top = `${newTop}px`;
+        //downscroll
+        if (pageTop > this.state.lastScrollTop) {
+            console.log("downscroll");
+            if (pageTop < 1500) {
+                parallaxEl.style.top =
+                    elementTopPosition + pageTop * 0.01 + "px";
+            }
+        } else {
+            console.log("upscroll");
+            //console.log(elementTopPosition);
+            //upscroll
+            if (pageTop < 1500) {
+                parallaxEl.style.top =
+                    elementTopPosition - pageTop * 0.01 + "px";
+            }
+        }
+
+        this.setState({ lastScrollTop: pageTop });
     }
 
     render() {
@@ -51,11 +75,7 @@ class Intro extends Component {
                     <img
                         id="flower5"
                         ref="parallaxElement"
-                        className={
-                            this.state.scrolling
-                                ? "movingFlowers animateFlowers"
-                                : "movingFlowers"
-                        }
+                        className="movingFlowers"
                         src={flower5}
                         alt="flower"
                     />
