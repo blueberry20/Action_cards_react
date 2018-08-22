@@ -20,8 +20,9 @@ const Instructions = () => {
             <img src={flowers} alt="back of the game packaging" />
             <p className="standOutText">
                 Come up with your own set of rules, and share with us on
-                Instagram with hashtag #animalActionCards. We might include it
-                in the next print version with a credit to you.
+                Instagram with hashtag #animalActionCards or by email
+                animalActionCardsGame@gmail.com. We might include it in the next
+                print version with a credit to you.
             </p>
         </section>
     );

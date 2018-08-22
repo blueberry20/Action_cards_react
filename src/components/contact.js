@@ -9,7 +9,7 @@ const Contact = () => {
             <p>
                 <a
                     className="socialIcon"
-                    href="https://www.instagram.com/whatliliadoes/"
+                    href="https://www.instagram.com/creativemango/"
                 >
                     <img
                         src={instagramIcon}
@@ -18,7 +18,7 @@ const Contact = () => {
                     />
                 </a>
             </p>
-            <p className="gray">@AnimalActionCards</p>
+            <p className="gray">@CreativeMango</p>
             <p className="gray">#animalActionCards</p>
             <p className="smallFont">
                 &copy; 2018. Creative Mango Ltd. All Rights Reserved.

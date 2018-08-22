@@ -1,54 +1,9 @@
 import React, { Component } from "react";
 import boxImg from "../img/cover.jpg";
-import flower5 from "../img/flower5.png";
-import flower4 from "../img/flower4.png";
-//import _ from "lodash";
 
 class Intro extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            lastScrollTop: window.scrollY
-        };
-
-        //this.lastScrollTop = window.scrollY;
-    }
-    componentDidMount() {
-        window.addEventListener("scroll", this.handleScroll.bind(this));
-        window.scrollTo(0, 0);
-        // window.addEventListener(
-        //     "scroll",
-        //     _.throttle(this.handleScroll.bind(this), 100)
-        // );
-    }
-
-    handleScroll() {
-        let parallaxEl = this.refs.parallaxElement;
-        let elementTopPosition = parallaxEl.offsetTop;
-        let pageTop = window.scrollY;
-
-        //console.log("lastScrollTop " + this.state.lastScrollTop);
-        console.log("pageTop" + pageTop);
-        console.log("elementTopPosition" + elementTopPosition);
-
-        //downscroll
-        if (pageTop > this.state.lastScrollTop) {
-            console.log("downscroll");
-            if (pageTop < 1500) {
-                parallaxEl.style.top =
-                    elementTopPosition + pageTop * 0.01 + "px";
-            }
-        } else {
-            console.log("upscroll");
-            //console.log(elementTopPosition);
-            //upscroll
-            if (pageTop < 1500) {
-                parallaxEl.style.top =
-                    elementTopPosition - pageTop * 0.01 + "px";
-            }
-        }
-
-        this.setState({ lastScrollTop: pageTop });
     }
 
     render() {
@@ -72,19 +27,6 @@ class Intro extends Component {
                             <h2>moving</h2>
                         </div>
                     </div>
-                    <img
-                        id="flower5"
-                        ref="parallaxElement"
-                        className="movingFlowers"
-                        src={flower5}
-                        alt="flower"
-                    />
-                    <img
-                        id="flower4"
-                        className="movingFlowers"
-                        src={flower4}
-                        alt="flower"
-                    />
                 </section>
             </div>
         );

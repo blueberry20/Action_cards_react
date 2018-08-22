@@ -160,9 +160,10 @@ p {
     background-color: #84fdfd;
 }
 
-/*======================Flowers======================*/
-.movingFlowers {
+/*======================Parallax Flowers======================*/
+.parallaxEl {
     position: absolute;
+    z-index: 10;
 }
 
 #flower5 {
@@ -177,7 +178,7 @@ p {
     height: 200px;
 }
 
-.animateFlowers {
+/* .animateFlowers {
     animation: rotate 2s linear;
     animation-fill-mode: forwards;
 }
@@ -191,7 +192,7 @@ p {
         transform: translate(100px, 100px) rotateZ(20deg);
         animation-timing-function: ease-in-out;
     }
-}
+} */
 
 /*======================Media queries======================*/
 

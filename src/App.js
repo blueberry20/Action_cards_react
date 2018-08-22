@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Intro from "./components/intro.js";
+//import Parallax from "./components/parallax.js";
 import SimpleSlider from "./components/slider.js";
 import Instructions from "./components/instructions.js";
 import MemoryGame from "./components/memory_game.js";
