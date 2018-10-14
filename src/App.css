@@ -37,6 +37,7 @@ h2 {
     font-family: "Roboto";
     font-size: 50px;
     font-weight: 300;
+    margin: 20px;
 }
 
 h3 {
@@ -70,6 +71,29 @@ p {
 
 .smallFont {
     font-size: 12px;
+}
+
+.buyBtn {
+    border: 1px solid #000;
+    height: 50px;
+    display: block;
+    width: 220px;
+    margin: 20px auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 50px;
+    padding: 0 10px;
+    color: #fff;
+    background-color: #000;
+    transition: all 1s ease-in-out;
+}
+
+.buyBtn:hover,
+.buyBtn:focus,
+.buyBtn:active {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
 }
 
 /*==================Intro section======================*/
@@ -218,16 +242,34 @@ p {
     section {
         padding: 30px;
     }
+
+    .sm-col-100 {
+        width: 100%;
+    }
+
+    .flex {
+        flex-direction: column;
+    }
     #boxImg {
         width: 350px;
     }
 
     h2 {
         font-size: 36px;
+        display: inline;
+        margin: 5px;
     }
 
     h3 {
         font-size: 34px;
+    }
+
+    #boxImg {
+        margin: 40px auto;
+    }
+
+    .buyBtn {
+        margin: 20px auto;
     }
 
     #instructionsSection h4 {

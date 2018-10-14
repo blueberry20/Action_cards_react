@@ -36,9 +36,9 @@ class Parallax extends Component {
         let elementTopPosition = parallaxEl.offsetTop;
         let pageTop = window.scrollY;
 
-        console.log("lastScrollTop " + this.state.lastScrollTop);
-        console.log("pageTop" + pageTop);
-        console.log("elementTopPosition" + elementTopPosition);
+        // console.log("lastScrollTop " + this.state.lastScrollTop);
+        // console.log("pageTop" + pageTop);
+        // console.log("elementTopPosition" + elementTopPosition);
 
         //downscroll
         if (pageTop >= this.state.lastScrollTop) {

@@ -1,7 +1,9 @@
 {
   "name": "slideshow",
+  "homepage": "http://animalactioncards.com",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "engines": {
     "node": "8.1.1",
     "npm": "5.0.3"
